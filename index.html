@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redmi K20 Pro — ROM &amp; Bootloader Guide</title>
+<style>
+  :root{
+    --bg: #fbfbfd;
+    --bg-alt: #ffffff;
+    --text: #1d1d1f;
+    --text-soft: #6e6e73;
+    --line: #d2d2d7;
+    --accent: #0a6cff;
+    --accent-soft: #eaf2ff;
+    --card: #ffffff;
+    --code-bg: #f5f5f7;
+    --danger: #d64545;
+    --danger-soft: #fdeeee;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  img{max-width:100%;}
+
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  header.top{
+    position:sticky; top:0; z-index:10;
+    backdrop-filter: blur(14px) saturate(150%);
+    background:color-mix(in srgb, var(--bg) 80%, transparent);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:720px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:14px;
+  }
+  .nav .brand{font-weight:600; color:var(--text);}
+  .nav .links{display:flex; gap:18px; overflow-x:auto;}
+  .nav .links a{color:var(--text-soft); white-space:nowrap;}
+  .nav .links a:hover{color:var(--text); text-decoration:none;}
+
+  .hero{
+    padding:88px 0 56px;
+    text-align:center;
+  }
+  .hero h1{
+    font-size:clamp(34px, 7vw, 56px);
+    line-height:1.05;
+    letter-spacing:-0.02em;
+    margin:0 0 14px;
+    font-weight:650;
+  }
+  .hero p.sub{
+    font-size:19px;
+    color:var(--text-soft);
+    max-width:520px;
+    margin:0 auto 28px;
+  }
+  .device-line{
+    display:inline-block;
+    font-size:13px;
+    color:var(--accent);
+    background:var(--accent-soft);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:20px;
+    font-weight:500;
+  }
+  .hero .actions{
+    display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:11px 22px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:500;
+  }
+  .btn.primary{background:var(--accent); color:#fff;}
+  .btn.primary:hover{opacity:0.88; text-decoration:none;}
+  .btn.ghost{border:1px solid var(--line); color:var(--text);}
+  .btn.ghost:hover{border-color:var(--text-soft); text-decoration:none;}
+
+  section{
+    padding:64px 0;
+    border-top:1px solid var(--line);
+  }
+  section:first-of-type{border-top:none;}
+  section h2{
+    font-size:clamp(24px, 4vw, 30px);
+    letter-spacing:-0.01em;
+    margin:0 0 8px;
+    font-weight:650;
+  }
+  section p.lead{
+    color:var(--text-soft);
+    font-size:16px;
+    margin:0 0 28px;
+    max-width:560px;
+  }
+
+  .steps{
+    counter-reset: step;
+    padding:0; margin:0; list-style:none;
+  }
+  .steps li{
+    counter-increment: step;
+    display:flex;
+    gap:16px;
+    padding:18px 0;
+    border-top:1px solid var(--line);
+  }
+  .steps li:first-child{border-top:none;}
+  .steps li::before{
+    content: counter(step);
+    flex:none;
+    width:28px; height:28px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    color:var(--accent);
+    font-size:13px;
+    font-weight:600;
+    display:flex; align-items:center; justify-content:center;
+    margin-top:2px;
+  }
+  .steps li .body b{display:block; margin-bottom:2px;}
+  .steps li .body span{color:var(--text-soft); font-size:15px;}
+  code{
+    background:var(--code-bg);
+    padding:2px 6px;
+    border-radius:5px;
+    font-size:13.5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  .cmd{
+    background:#0f1115;
+    color:#e6f1ff;
+    border-radius:12px;
+    padding:16px 18px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size:13.5px;
+    line-height:1.9;
+    overflow-x:auto;
+    margin:18px 0 0;
+  }
+  .cmd .c-label{
+    display:block;
+    color:#7d8896;
+    font-size:11px;
+    margin-bottom:6px;
+  }
+  .cmd span.prompt{color:#4fa8ff; margin-right:6px;}
+
+  .byline{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    color:var(--text-soft);
+    background:var(--accent-soft);
+    border:1px solid var(--line);
+    padding:8px 16px;
+    border-radius:999px;
+    margin:0 0 32px;
+  }
+  .byline b{color:var(--accent); font-weight:650;}
+
+  .warn{
+    background:var(--danger-soft);
+    color:var(--danger);
+    border-radius:12px;
+    padding:14px 16px;
+    font-size:14px;
+    margin:20px 0 0;
+  }
+
+  .rom-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap:12px;
+  }
+  .rom-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+  }
+  .rom-card b{display:block; font-size:15px; margin-bottom:4px;}
+  .rom-card span{color:var(--text-soft); font-size:13.5px;}
+
+  .contact-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:32px;
+    text-align:center;
+  }
+  .contact-card p{color:var(--text-soft); margin:0 0 18px;}
+  .contact-card .email{
+    font-size:20px;
+    font-weight:600;
+  }
+
+  footer{
+    padding:40px 0 60px;
+    text-align:center;
+    color:var(--text-soft);
+    font-size:13px;
+  }
+
+  @media (max-width: 480px){
+    .hero{padding:64px 0 40px;}
+    section{padding:48px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="nav">
+    <div class="brand">K20 Pro Guide</div>
+    <div class="links">
+      <a href="#unlock">Unlock</a>
+      <a href="#flash-custom">Custom ROM</a>
+      <a href="#relock">Relock</a>
+      <a href="#stock">Stock ROM</a>
+      <a href="#roms">ROMs</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="device-line">Xiaomi Redmi K20 Pro · codename raphael</div>
+    <h1>Unlock, flash, restore.</h1>
+    <p class="sub">A clean, straightforward guide to bootloader unlocking, custom ROMs, relocking, and going back to stock — all for the Redmi K20 Pro.</p>
+    <div class="byline">Project on K20 Pro Raphael by <b>why.ad7rsh</b></div>
+    <div class="actions">
+      <a class="btn primary" href="#unlock">Start with bootloader unlock</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+  <section id="unlock">
+    <h2>Unlocking the bootloader</h2>
+    <p class="lead">Required before flashing any custom recovery or ROM. Xiaomi requires an official unlock through Mi Unlock Tool, tied to your Mi account.</p>
+    <ol class="steps">
+      <li><div class="body"><b>Add your Mi account to the phone</b><span>Settings → Additional settings → Developer options → sign in with a Mi account, and turn on OEM unlocking + USB debugging.</span></div></li>
+      <li><div class="body"><b>Apply for permission</b><span>On the Mi Unlock status page, request unlock permission. Xiaomi usually adds a waiting period, from a few hours to several days.</span></div></li>
+      <li><div class="body"><b>Install Mi Unlock Tool</b><span>Download it on a PC from Xiaomi's official unlock site and sign in with the same Mi account.</span></div></li>
+      <li><div class="body"><b>Boot to fastboot mode</b><span>Power off, then hold <code>Volume Down + Power</code> until the fastboot logo appears. Connect via USB.</span></div></li>
+      <li><div class="body"><b>Unlock</b><span>In Mi Unlock Tool, click Unlock and confirm on the phone screen. The device will reboot and reset itself.</span></div></li>
+    </ol>
+    <pre class="cmd"><span class="c-label">Terminal / Command Prompt</span><span class="prompt">$</span>adb reboot bootloader
+<span class="prompt">$</span>fastboot devices
+<span class="prompt">$</span>fastboot flashing unlock</pre>
+    <p class="warn">Unlocking wipes all data on the phone and voids some warranty protections. Back up everything first.</p>
+  </section>
+
+  <section id="flash-custom">
+    <h2>Flashing a custom ROM</h2>
+    <p class="lead">Once unlocked, a custom recovery lets you flash any ROM built for raphael.</p>
+    <ol class="steps">
+      <li><div class="body"><b>Flash a custom recovery</b><span>Boot the recovery image (e.g. TWRP or OrangeFox) with <code>fastboot boot recovery.img</code>, then flash it permanently from inside recovery if you plan to keep using it.</span></div></li>
+      <li><div class="body"><b>Copy the ROM to the phone</b><span>Push the ROM zip via <code>adb push rom.zip /sdcard/</code> or copy it over MTP while in recovery.</span></div></li>
+      <li><div class="body"><b>Wipe before flashing</b><span>In recovery, wipe Dalvik/ART cache, cache, and data if you're switching ROM families. Keep internal storage untouched.</span></div></li>
+      <li><div class="body"><b>Flash ROM, then GApps if needed</b><span>Install the ROM zip first, then a GApps package matching the Android version, in the same session.</span></div></li>
+      <li><div class="body"><b>Reboot</b><span>First boot after a fresh ROM can take several minutes — let it sit.</span></div></li>
+    </ol>
+    <pre class="cmd"><span class="c-label">Terminal / Command Prompt</span><span class="prompt">$</span>fastboot boot recovery.img
+<span class="prompt">$</span>fastboot flash recovery recovery.img
+<span class="prompt">$</span>adb push rom.zip /sdcard/
+<span class="prompt">$</span>adb sideload rom.zip
+<span class="prompt">$</span>fastboot reboot</pre>
+  </section>
+
+  <section id="relock">
+    <h2>Relocking the bootloader</h2>
+    <p class="lead">Useful before selling the phone or returning to a fully stock, locked state.</p>
+    <ol class="steps">
+      <li><div class="body"><b>Flash the latest official stock ROM first</b><span>Relocking on a custom ROM/recovery can hard-brick the device. Always go back to stock fastboot ROM before relocking.</span></div></li>
+      <li><div class="body"><b>Boot into fastboot mode</b><span><code>Volume Down + Power</code>, then connect to PC.</span></div></li>
+      <li><div class="body"><b>Run the lock command</b><span><code>fastboot oem lock</code> — the phone will reset again.</span></div></li>
+    </ol>
+    <pre class="cmd"><span class="c-label">Terminal / Command Prompt</span><span class="prompt">$</span>adb reboot bootloader
+<span class="prompt">$</span>fastboot oem lock</pre>
+    <p class="warn">Never relock while a custom recovery or ROM is still on the device — this is the most common cause of a hard brick.</p>
+  </section>
+
+  <section id="stock">
+    <h2>Flashing back to stock ROM</h2>
+    <p class="lead">Uses Xiaomi's official Mi Flash Tool with a fastboot ROM package.</p>
+    <ol class="steps">
+      <li><div class="body"><b>Download the fastboot ROM</b><span>Get the matching fastboot package for raphael from Xiaomi's official firmware site.</span></div></li>
+      <li><div class="body"><b>Install Mi Flash Tool</b><span>Official Xiaomi PC tool for flashing fastboot ROMs.</span></div></li>
+      <li><div class="body"><b>Extract and select the ROM folder</b><span>Point Mi Flash Tool to the extracted fastboot ROM directory.</span></div></li>
+      <li><div class="body"><b>Boot to fastboot, connect, flash</b><span>Choose "clean all" to fully wipe, or "save user data" to keep files, then click Flash.</span></div></li>
+    </ol>
+    <pre class="cmd"><span class="c-label">Terminal / Command Prompt</span><span class="prompt">$</span>adb reboot bootloader
+<span class="prompt">$</span>fastboot getvar all
+<span class="prompt">$</span>fastboot reboot</pre>
+  </section>
+
+  <section id="roms">
+    <h2>Custom ROMs available for raphael</h2>
+    <p class="lead">Actively maintained options as of the community's latest builds. Always check the current build status before flashing.</p>
+    <div class="rom-grid">
+      <div class="rom-card"><b>Evolution X</b><span>AOSP-based, clean and feature-rich</span></div>
+      <div class="rom-card"><b>crDroid</b><span>AOSP with heavy customization options</span></div>
+      <div class="rom-card"><b>Pixel Experience</b><span>Stock Pixel look and feel</span></div>
+      <div class="rom-card"><b>ArrowOS</b><span>Lightweight, near-stock AOSP</span></div>
+      <div class="rom-card"><b>LineageOS</b><span>Long-standing, stable AOSP base</span></div>
+      <div class="rom-card"><b>DerpFest</b><span>AOSP with extra tweaks and theming</span></div>
+      <div class="rom-card"><b>PixelPlusUI</b><span>Pixel features on AOSP</span></div>
+      <div class="rom-card"><b>MIUI / HyperOS (stock)</b><span>Official Xiaomi firmware</span></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Questions or stuck mid-flash?</h2>
+    <p class="lead">Reach out directly — happy to help troubleshoot.</p>
+    <div class="contact-card">
+      <p>For ROM links, build issues, or anything else on this page</p>
+      <a class="email" href="mailto:whyadarsh7@gmail.com">whyadarsh7@gmail.com</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>Community guide for Redmi K20 Pro (raphael) · Always verify official sources before flashing.</footer>
+
+</body>
+</html>
