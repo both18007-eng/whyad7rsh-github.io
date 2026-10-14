@@ -1,0 +1,48 @@
+# Redmi K20 Pro (Raphael) Flashing Guide
+
+Custom ROM, bootloader unlock/relock and stock ROM flashing guide for the **Redmi K20 Pro (codename: Raphael)**.
+
+🌐 **Live guide:** [Open Website](https://both18007-eng.github.io/whyad7rsh-github.io/)
+
+## What's Inside
+- 🔓 Bootloader unlock
+- 🔒 Bootloader relock
+- 📦 Custom ROM flashing
+- 🔄 Back to stock ROM (fastboot)
+- 🎮 Bonus: `flappy.html`, a small Flappy Bird game
+
+## Requirements
+- Redmi K20 Pro (Raphael)
+- PC with a USB cable
+- Mi Account and Mi Unlock Tool
+- ADB and Fastboot (platform-tools)
+- Phone charged to at least 50%
+- Full backup of your data
+
+## Quick Overview
+
+### 1. Unlock Bootloader
+1. Log in to your Mi Account and enable OEM Unlocking in Developer Options
+2. Bind your account in the Mi Unlock Tool (there is a waiting period)
+3. Boot the phone into fastboot mode and unlock it with the Mi Unlock Tool
+
+### 2. Flash a Custom ROM
+1. Download the ROM, a recovery image and GApps (if needed)
+2. Flash the recovery: `fastboot flash recovery recovery.img`
+3. Boot into recovery and format data
+4. Sideload or install the ROM zip, then reboot
+
+### 3. Go Back to Stock
+1. Download the official Fastboot ROM
+2. Boot the phone into fastboot mode
+3. Run the flash script from the Fastboot ROM
+
+### 4. Relock Bootloader
+⚠️ Only relock after flashing a **complete stock fastboot ROM**.
+Relocking with a custom ROM or custom recovery installed can **brick** your phone.
+
+## Disclaimer
+Flashing is risky. You may lose data or brick your device. Follow this guide at your own risk. The author is not responsible for any damage.
+
+## Author
+**Adarsh** ([@why.ad7rsh](https://instagram.com/why.ad7rsh))
