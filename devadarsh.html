@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dev adarsh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Caveat:wght@600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#fff;--mut:#d9ccf5;--red:#ff3b5c;--pur:#8b5cf6;--line:rgba(255,255,255,.25);--glass:rgba(255,255,255,.09);
+--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Outfit,system-ui,sans-serif;color:var(--ink);line-height:1.6;min-height:100vh;overflow-x:hidden;background:radial-gradient(900px 600px at 15% 10%,#3b1470,transparent 60%),radial-gradient(800px 600px at 90% 90%,#5a0f3a,transparent 60%),#0c0420;background-attachment:fixed}
+.stage{position:relative;max-width:1100px;margin:0 auto;padding:22px 16px 100px}
+.glass{position:relative;background:var(--glass);border:1px solid var(--line);border-radius:26px;backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);box-shadow:0 10px 50px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.25)}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--grain);opacity:.09;mix-blend-mode:overlay;pointer-events:none}
+/* 3D shapes */
+.fl{position:absolute;pointer-events:none;animation:fl 9s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-18px) rotate(6deg)}}
+.ring{width:120px;height:120px;border-radius:50%;border:16px solid;border-color:#ff6b86 #e11d48 #9f1239 #ff8fa3;top:-34px;left:34%;box-shadow:0 10px 30px #e11d4866}
+.cap{width:230px;height:120px;border-radius:70px;background:radial-gradient(circle at 30% 25%,#ff9aad,#e11d48 70%);right:-50px;bottom:-40px;transform:rotate(-25deg);animation-delay:-3s}
+.cap2{width:200px;height:110px;border-radius:70px;background:radial-gradient(circle at 30% 25%,#d6bcff,#6d28d9 70%);left:-60px;bottom:-30px;transform:rotate(20deg);animation-delay:-5s}
+.sph{border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff 0,#c4b5fd 14%,#7c3aed 55%,#2e1065 100%);box-shadow:0 0 60px #8b5cf6aa,inset -12px -16px 30px #1e064688}
+.s1{width:190px;height:190px;position:relative;margin:auto;animation:fl 8s ease-in-out infinite;pointer-events:none}
+.s1::before,.s1::after{content:"";position:absolute;inset:-22px;border-radius:50%;border:1px solid rgba(255,255,255,.35)}
+.s1::after{inset:-48px;border-color:rgba(255,255,255,.18)}
+.s2{width:56px;height:56px;top:90px;left:-20px;position:absolute;animation:fl 7s ease-in-out infinite -2s}
+.frame{padding:18px 26px 40px}
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0 4px}
+.logo{font-family:Orbitron,sans-serif;font-weight:900;font-size:1.3rem;display:flex;align-items:baseline;color:#fff;text-decoration:none}
+.logo svg{width:.95em;height:.8em;margin:0 2px}
+.logo .ad{font-family:Caveat,cursive;font-size:1.55rem;color:var(--red);margin-left:5px}
+nav ul{display:flex;gap:22px;list-style:none;font-size:.95rem}
+nav a{color:var(--mut);text-decoration:none}
+nav ul a:hover{color:#fff}
+.hero{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;align-items:center;padding:46px 8px 8px}
+.hero .txt{text-align:right}
+.eyebrow{letter-spacing:.3em;font-size:.75rem;color:var(--red);font-weight:600}
+h1{font-family:Orbitron,sans-serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.6rem);line-height:1.08;margin:10px 0 14px}
+h1 em{font-style:normal;color:var(--red)}
+.txt p{color:var(--mut);max-width:430px;margin-left:auto}
+.cta{display:flex;gap:12px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap}
+.btn{padding:12px 28px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.12);color:#fff;text-decoration:none;font:500 1rem Outfit;cursor:pointer}
+.btn.red{background:linear-gradient(135deg,#ff3b5c,#c1123a);border-color:transparent;box-shadow:0 8px 24px #ff3b5c55}
+.btn:hover{filter:brightness(1.15)}
+h2{font-family:Orbitron,sans-serif;font-size:1.4rem;margin:56px 0 18px}
+h2 span{color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{padding:24px}
+.card .ic{font-size:1.6rem}
+.card h3{font-size:1.1rem;margin:8px 0 4px}
+.card p{color:var(--mut);font-size:.95rem}
+.dev{display:flex;align-items:center;gap:14px}
+.dev b{display:block;font-weight:600}
+.dev small{color:var(--mut)}
+.tag{margin-left:auto;font-size:.75rem;padding:3px 10px;border-radius:999px;background:rgba(255,59,92,.2);border:1px solid rgba(255,59,92,.5)}
+.pills{display:flex;flex-wrap:wrap;gap:12px}
+.pills a{padding:12px 22px;border-radius:999px;background:var(--glass);border:1px solid var(--line);color:#fff;text-decoration:none;backdrop-filter:blur(14px)}
+.pills a:hover{border-color:var(--red);background:rgba(255,59,92,.18)}
+footer{margin-top:60px;text-align:center;color:var(--mut);font-size:.85rem}
+/* chat */
+#fab{position:fixed;right:18px;bottom:18px;z-index:20;width:60px;height:60px;border-radius:50%;border:1px solid var(--line);background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 28px #8b5cf688}
+#chat{position:fixed;right:14px;bottom:90px;z-index:20;width:min(390px,calc(100vw - 28px));height:min(560px,calc(100vh - 115px));display:none;flex-direction:column;overflow:hidden;background:rgba(26,8,56,.72)}
+#chat.open{display:flex}
+.ch{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-weight:500;position:relative;z-index:1}
+.ch small{display:block;color:var(--mut);font-weight:300}
+.ch button{background:none;border:0;color:#fff;font-size:1.4rem;cursor:pointer}
+#msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;position:relative;z-index:1}
+.m{max-width:86%;padding:9px 13px;border-radius:16px;font-size:.95rem;white-space:pre-wrap;word-wrap:break-word}
+.m.bot{background:rgba(255,255,255,.12);border:1px solid var(--line);align-self:flex-start}
+.m.me{background:linear-gradient(135deg,#8b5cf6,#6d28d9);align-self:flex-end}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 8px;position:relative;z-index:1}
+.chips button{font:.8rem Outfit;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--mut);cursor:pointer}
+.cf{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);position:relative;z-index:1}
+.cf input{flex:1;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:#fff;font:1rem Outfit;min-width:0}
+.cf button{padding:0 18px;border-radius:999px;border:0;background:var(--red);color:#fff;font:500 1rem Outfit;cursor:pointer}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media(max-width:760px){nav ul{display:none}.hero{grid-template-columns:1fr;padding-top:24px}.hero .txt{text-align:left}.txt p{margin-left:0}.cta{justify-content:flex-start}.s1{width:140px;height:140px;order:2}.ring{width:80px;height:80px;border-width:11px;left:55%}.frame{padding:14px 18px 34px}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;margin-top:26px}.stat{padding:22px;text-align:center}.stat b{display:block;font:900 2.4rem Orbitron,sans-serif;background:linear-gradient(135deg,#fff,#ff8fa3);-webkit-background-clip:text;background-clip:text;color:transparent}.stat span{color:var(--mut);font-size:.9rem}
+#bar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#8b5cf6,#ff3b5c);z-index:30}
+/* motion */
+:root{--e:cubic-bezier(.2,.7,.2,1)}
+.stage{z-index:1}.txt{position:relative;z-index:2}.s2{pointer-events:none}
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(40% 40% at 20% 30%,#7c3aed66,transparent),radial-gradient(35% 35% at 80% 70%,#e11d4866,transparent),radial-gradient(30% 30% at 60% 20%,#a78bfa55,transparent);animation:drift 20s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(7%,-6%,0) rotate(10deg) scale(1.12)}}
+.glow{position:fixed;left:0;top:0;width:440px;height:440px;margin:-220px 0 0 -220px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.3),transparent 65%);pointer-events:none;z-index:0;will-change:transform}
+.rv{opacity:0;transform:translateY(30px) scale(.98);transition:opacity .9s var(--e) var(--d,0s),transform .9s var(--e) var(--d,0s),translate .35s var(--e),border-color .3s,background .3s,box-shadow .3s}
+.rv.in{opacity:1;transform:none}
+.card{overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-20deg);transition:left .9s var(--e);pointer-events:none}
+.card:hover::before{left:150%}
+.card:hover{translate:0 -8px;border-color:rgba(255,255,255,.5);box-shadow:0 18px 60px rgba(139,92,246,.45),inset 0 1px 0 rgba(255,255,255,.3)}
+.pills a:hover{translate:0 -5px}
+.card .ic{display:inline-block;animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-6deg)}}
+@keyframes spin{to{rotate:360deg}}
+.ring{animation:fl 9s ease-in-out infinite,spin 16s linear infinite}
+.sph.s1{animation:fl 8s ease-in-out infinite,pulse 4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 100px #a78bfa,inset -12px -16px 30px #1e064688}}
+.s1::before{border-top-color:var(--red);animation:spin 6s linear infinite}
+.s1::after{border-right-color:#c4b5fd;animation:spin 11s linear infinite reverse}
+h1 em{background:linear-gradient(90deg,#ff3b5c,#ffc2cd,#ff3b5c);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 4s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.logo svg{animation:tick 3s ease-in-out infinite}
+@keyframes tick{50%{transform:scale(1.18) rotate(-6deg)}}
+.btn{transition:transform .3s var(--e),filter .3s,box-shadow .3s}
+.btn:hover{transform:translateY(-3px) scale(1.04)}.btn:active{transform:scale(.96)}
+.btn.red{animation:glowb 2.8s ease-in-out infinite}
+@keyframes glowb{50%{box-shadow:0 8px 42px #ff3b5caa}}
+#fab{transition:transform .3s var(--e);animation:fpulse 2.8s infinite}
+#fab:hover{transform:scale(1.12) rotate(-8deg)}
+@keyframes fpulse{0%{box-shadow:0 8px 28px #8b5cf688,0 0 0 0 #8b5cf688}70%,100%{box-shadow:0 8px 28px #8b5cf688,0 0 0 22px transparent}}
+#chat{display:flex;visibility:hidden;opacity:0;transform:translateY(24px) scale(.94);transform-origin:bottom right;transition:opacity .35s,transform .5s cubic-bezier(.2,.9,.3,1.2),visibility 0s .5s}
+#chat.open{visibility:visible;opacity:1;transform:none;transition-delay:0s}
+.m{animation:pop .45s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.94)}}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:14px}
+.tab{flex:none;padding:10px 20px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--mut);font:500 .95rem Outfit,sans-serif;cursor:pointer;transition:background .25s,color .25s}
+.tab[aria-selected=true]{background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;border-color:transparent}
+.panel{display:none;padding:26px}.panel.on{display:block;animation:pop .45s}
+.panel h3{font-size:1.2rem;margin-bottom:4px}
+.lead{color:var(--mut);margin-bottom:14px}
+.steps{list-style:none;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.steps li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:rgba(255,59,92,.2);border:1px solid rgba(255,59,92,.5);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600}
+.steps b{display:block}.steps span{color:var(--mut);font-size:.92rem}
+.panel code{background:rgba(255,255,255,.14);padding:1px 6px;border-radius:5px;font-size:.85em}
+.cmd{position:relative;background:#0b0618;border:1px solid var(--line);border-radius:14px;padding:34px 16px 14px;margin-top:16px;overflow-x:auto;font:13px/1.9 ui-monospace,Menlo,Consolas,monospace;color:#e8defd}
+.cmd .lb{position:absolute;top:10px;left:16px;font-size:.7rem;color:#8d80b0}
+.cmd .cp{position:absolute;top:6px;right:8px;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.1);color:#fff;font:.75rem Outfit,sans-serif;cursor:pointer}
+.cmd div{white-space:nowrap}.cmd div::before{content:"$ ";color:var(--red)}
+.warn{margin-top:14px;padding:12px 16px;border-radius:14px;background:rgba(255,59,92,.15);border:1px solid rgba(255,59,92,.45);font-size:.9rem}
+.romg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.romg>div{padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid var(--line)}
+.romg b{display:block}.romg span{color:var(--mut);font-size:.85rem}
+/* performance */
+body{background-attachment:scroll}
+body::before,.glow{display:none}
+.glass::after{content:none}
+.glass{backdrop-filter:blur(12px) saturate(130%);-webkit-backdrop-filter:blur(12px) saturate(130%)}
+.pills a{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(255,255,255,.12)}
+.sph.s1{animation:fl 8s ease-in-out infinite}
+.btn.red,#fab{animation:none}
+h1 em{animation:none;background-position:0 0}
+.fl,.sph{will-change:transform}
+@media(max-width:760px){.glass{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.fl,.s1,.s2,.card .ic,.s1::before,.s1::after{animation:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="chk" viewBox="0 0 60 50"><path d="M2 8 L14 6 L26 34 L52 2 L58 8 L28 46 L22 46 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></symbol></svg>
+<div class="stage" id="top">
+  <div class="fl ring"></div><div class="fl cap"></div><div class="fl cap2"></div>
+  <div class="glass frame">
+    <nav>
+      <a class="logo" href="#top" aria-label="dev adarsh">de<svg><use href="#chk"/></svg><span class="ad">adarsh</span></a>
+      <ul><li><a href="#what">What I do</a></li><li><a href="#guide">Flash Guide</a></li><li><a href="#setup">Setup</a></li><li><a href="#links">Links</a></li></ul>
+      <a class="btn" href="mailto:whyadarsh7@gmail.com" style="padding:8px 20px">Contact</a>
+    </nav>
+    <div class="hero">
+      <div style="position:relative"><div class="sph s1"></div><div class="sph s2"></div></div>
+      <div class="txt">
+        <div class="eyebrow">ANDROID · ROMs · CONTENT</div>
+        <h1>CUSTOM ROM <em>TESTER</em></h1>
+        <p>I flash, break and fix Android phones so you don't have to. ROM reviews, unlock guides and a built-in AI that answers anything.</p>
+        <div class="cta"><button class="btn red" id="open2">Ask my AI</button><a class="btn" href="#what">Explore</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="glass stat"><b data-n="6">0</b><span>Devices</span></div>
+    <div class="glass stat"><b data-n="2">0</b><span>Live projects</span></div>
+    <div class="glass stat"><b>A17</b><span>Custom ROM tested</span></div>
+  </div>
+  <h2 id="what">What I <span>do</span></h2>
+  <div class="grid">
+    <div class="glass card"><div class="ic">⚡</div><h3>Custom ROMs</h3><p>Testing Evolution X and other ROMs (up to Android 17) on the Redmi K20 Pro.</p></div>
+    <div class="glass card"><div class="ic">🔓</div><h3>Unlock &amp; Flash Guides</h3><p>Bootloader unlock, relock and stock ROM flashing, step by step. <a href="#guide" style="color:#ff8fa3">Open guide →</a></p></div>
+    <div class="glass card"><div class="ic">📱</div><h3>Reviews &amp; Content</h3><p>Bugs, battery life and performance. Android content on Instagram.</p></div>
+  </div>
+
+  <h2 id="guide">K20 Pro <span>flash guide</span></h2>
+  <p class="lead">Redmi K20 Pro (raphael): unlock, flash, relock and restore. Pick a tab and tap Copy on any command.</p>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" data-t="p1" aria-selected="true">1. Unlock</button>
+    <button class="tab" role="tab" data-t="p2" aria-selected="false">2. Custom ROM</button>
+    <button class="tab" role="tab" data-t="p3" aria-selected="false">3. Relock</button>
+    <button class="tab" role="tab" data-t="p4" aria-selected="false">4. Stock ROM</button>
+    <button class="tab" role="tab" data-t="p5" aria-selected="false">ROM list</button>
+  </div>
+  <div class="glass panel on" id="p1">
+    <h3>Unlocking the bootloader</h3><p class="lead">Required before any custom recovery or ROM. Xiaomi needs an official unlock through Mi Unlock Tool, tied to your Mi account.</p>
+    <ol class="steps">
+      <li><div><b>Add your Mi account to the phone</b><span>Settings → Additional settings → Developer options → sign in with a Mi account, then turn on OEM unlocking and USB debugging.</span></div></li>
+      <li><div><b>Apply for permission</b><span>Request unlock permission on the Mi Unlock status page. Xiaomi usually adds a waiting period, from a few hours to several days.</span></div></li>
+      <li><div><b>Install Mi Unlock Tool</b><span>Download it on a PC from Xiaomi's official unlock site and sign in with the same Mi account.</span></div></li>
+      <li><div><b>Boot to fastboot mode</b><span>Power off, then hold <code>Volume Down + Power</code> until the fastboot logo appears. Connect via USB.</span></div></li>
+      <li><div><b>Unlock</b><span>Click Unlock in Mi Unlock Tool and confirm on the phone. The device reboots and resets itself.</span></div></li>
+    </ol>
+    <div class="cmd"><span class="lb">Terminal / Command Prompt</span><button class="cp">Copy</button><div>adb reboot bootloader</div><div>fastboot devices</div><div>fastboot flashing unlock</div></div>
+    <p class="warn">Unlocking wipes all data and can affect warranty. Back up everything first.</p>
+  </div>
+  <div class="glass panel" id="p2">
+    <h3>Flashing a custom ROM</h3><p class="lead">Once unlocked, a custom recovery lets you flash any ROM built for raphael.</p>
+    <ol class="steps">
+      <li><div><b>Flash a custom recovery</b><span>Boot the recovery image (TWRP or OrangeFox) with <code>fastboot boot recovery.img</code>, then flash it permanently from inside recovery if you plan to keep it.</span></div></li>
+      <li><div><b>Copy the ROM to the phone</b><span>Push the ROM zip with <code>adb push rom.zip /sdcard/</code> or copy it over MTP while in recovery.</span></div></li>
+      <li><div><b>Wipe before flashing</b><span>In recovery, wipe Dalvik/ART cache, cache and data if you are switching ROM families. Keep internal storage untouched.</span></div></li>
+      <li><div><b>Flash ROM, then GApps if needed</b><span>Install the ROM zip first, then a GApps package matching the Android version, in the same session.</span></div></li>
+      <li><div><b>Reboot</b><span>The first boot after a fresh ROM can take several minutes. Let it sit.</span></div></li>
+    </ol>
+    <div class="cmd"><span class="lb">Terminal / Command Prompt</span><button class="cp">Copy</button><div>fastboot boot recovery.img</div><div>fastboot flash recovery recovery.img</div><div>adb push rom.zip /sdcard/</div><div>adb sideload rom.zip</div><div>fastboot reboot</div></div>
+  </div>
+  <div class="glass panel" id="p3">
+    <h3>Relocking the bootloader</h3><p class="lead">Useful before selling the phone or returning to a fully stock, locked state.</p>
+    <ol class="steps">
+      <li><div><b>Flash the latest official stock ROM first</b><span>Relocking on a custom ROM or recovery can hard-brick the device. Always go back to the stock fastboot ROM before relocking.</span></div></li>
+      <li><div><b>Boot into fastboot mode</b><span>Hold <code>Volume Down + Power</code>, then connect to the PC.</span></div></li>
+      <li><div><b>Run the lock command</b><span><code>fastboot oem lock</code>. The phone will reset again.</span></div></li>
+    </ol>
+    <div class="cmd"><span class="lb">Terminal / Command Prompt</span><button class="cp">Copy</button><div>adb reboot bootloader</div><div>fastboot oem lock</div></div>
+    <p class="warn">Never relock while a custom recovery or ROM is still on the device. It is the most common cause of a hard brick.</p>
+  </div>
+  <div class="glass panel" id="p4">
+    <h3>Flashing back to stock ROM</h3><p class="lead">Uses Xiaomi's official Mi Flash Tool with a fastboot ROM package.</p>
+    <ol class="steps">
+      <li><div><b>Download the fastboot ROM</b><span>Get the matching fastboot package for raphael from Xiaomi's official firmware site.</span></div></li>
+      <li><div><b>Install Mi Flash Tool</b><span>Xiaomi's official PC tool for flashing fastboot ROMs.</span></div></li>
+      <li><div><b>Extract and select the ROM folder</b><span>Point Mi Flash Tool to the extracted fastboot ROM directory.</span></div></li>
+      <li><div><b>Boot to fastboot, connect, flash</b><span>Choose "clean all" to fully wipe, or "save user data" to keep files, then click Flash.</span></div></li>
+    </ol>
+    <div class="cmd"><span class="lb">Terminal / Command Prompt</span><button class="cp">Copy</button><div>adb reboot bootloader</div><div>fastboot getvar all</div><div>fastboot reboot</div></div>
+  </div>
+  <div class="glass panel" id="p5">
+    <h3>Custom ROMs for raphael</h3><p class="lead">Always check the current build status before flashing.</p>
+    <div class="romg">
+      <div><b>Evolution X</b><span>AOSP-based, clean and feature-rich</span></div>
+      <div><b>crDroid</b><span>AOSP with heavy customization</span></div>
+      <div><b>Pixel Experience</b><span>Stock Pixel look and feel</span></div>
+      <div><b>ArrowOS</b><span>Lightweight, near-stock AOSP</span></div>
+      <div><b>LineageOS</b><span>Long-standing, stable AOSP base</span></div>
+      <div><b>DerpFest</b><span>AOSP with extra tweaks and theming</span></div>
+      <div><b>PixelPlusUI</b><span>Pixel features on AOSP</span></div>
+      <div><b>MIUI / HyperOS (stock)</b><span>Official Xiaomi firmware</span></div>
+    </div>
+  </div>
+
+  <h2 id="setup">My <span>devices</span></h2>
+  <div class="grid">
+    <div class="glass card dev"><div class="ic">📱</div><div><b>Realme P1 5G</b><small>Daily driver</small></div><span class="tag">Main</span></div>
+    <div class="glass card dev"><div class="ic">🧪</div><div><b>Redmi K20 Pro (Raphael)</b><small>ROM testing</small></div><span class="tag">Lab</span></div>
+    <div class="glass card dev"><div class="ic">📱</div><div><b>Moto G35 5G</b><small>In my collection</small></div><span class="tag">Phone</span></div>
+    <div class="glass card dev"><div class="ic">📱</div><div><b>Vivo Y21</b><small>In my collection</small></div><span class="tag">Phone</span></div>
+    <div class="glass card dev"><div class="ic">📱</div><div><b>Realme P3x</b><small>In my collection</small></div><span class="tag">Phone</span></div>
+    <div class="glass card dev"><div class="ic">📱</div><div><b>OnePlus 13 5G</b><small>In my collection</small></div><span class="tag">Phone</span></div>
+  </div>
+
+  <h2 id="links">Find <span>me</span></h2>
+  <div class="pills">
+    <a href="https://instagram.com/why.ad7rsh" target="_blank" rel="noopener">Instagram @why.ad7rsh</a>
+    <a href="https://github.com/both18007-eng" target="_blank" rel="noopener">GitHub</a>
+    <a href="mailto:whyadarsh7@gmail.com">✉️ whyadarsh7@gmail.com</a>
+    <a href="#guide">K20 Pro Flash Guide 📱</a>
+    <a href="https://both18007-eng.github.io/whyad7rsh-github.io/flappy.html" target="_blank" rel="noopener">Play Flappy 🎮</a>
+  </div>
+  <footer>© dev adarsh</footer>
+</div>
+
+<button id="fab" aria-label="Open chatbot">💬</button>
+<div id="chat" class="glass" role="dialog" aria-label="Chatbot">
+  <div class="ch"><div>Adarsh AI<small>Ask anything</small></div><button id="x" aria-label="Close">×</button></div>
+  <div id="msgs"></div>
+  <div class="chips" id="chips"><button>Who is Adarsh?</button><button>How do I unlock the bootloader?</button><button>What is his setup?</button></div>
+  <form class="cf" id="f"><input id="in" placeholder="Ask anything..." autocomplete="off"><button>Send</button></form>
+</div>
+
+<script>
+// Smart mode on GitHub Pages: paste your Cloudflare Worker URL here (see worker.js). Empty = built-in mode.
+const API_URL = "https://devadarsh-ai.whyadarsh7.workers.dev";
+const ABOUT = "Adarsh is an Android enthusiast, ROM tester and content creator. He tests custom ROMs (Evolution X, Android 17) on a Redmi K20 Pro; his daily driver is a Realme P1 5G. Other devices: Moto G35 5G, Vivo Y21, Realme P3x and OnePlus 13 5G. Instagram: @why.ad7rsh.";
+const SYS = "You are the AI assistant on Adarsh's personal website. Reply in English, short and direct. Adarsh is an Android enthusiast, ROM tester and content creator; he tests custom ROMs (Evolution X, Android 17) on a Redmi K20 Pro (Raphael), daily driver is a Realme P1 5G; other devices: Moto G35 5G, Vivo Y21, Realme P3x, OnePlus 13 5G; Instagram @why.ad7rsh. Help with ROM flashing and bootloader unlock, warning about risky steps. Answer any other question too.";
+const OFFLINE = [
+ [/(who|about|adarsh)/i, ABOUT],
+ [/(setup|device|phone|daily)/i, "Daily driver: Realme P1 5G. ROM testing: Redmi K20 Pro (Raphael). Also: Moto G35 5G, Vivo Y21, Realme P3x and OnePlus 13 5G."],
+ [/(insta|link|contact)/i, "Instagram: @why.ad7rsh. GitHub: both18007-eng. Email: whyadarsh7@gmail.com."],
+ [/(unlock|bootloader)/i, "Basic unlock flow for the K20 Pro (Raphael):\n1. Sign in with a Mi Account and bind it under Settings > Developer options > Mi Unlock status.\n2. Boot into fastboot (Power + Volume Down).\n3. Unlock with the Mi Unlock Tool.\nBack up first: unlocking wipes data. Check Xiaomi's official page for the exact waiting time."],
+ [/(relock|stock)/i, "To go back to stock, flash the official Fastboot ROM first, and only then relock. Relocking on a custom or wrong ROM risks a brick."],
+ [/(rom|flash|recovery|gapps|root|ksu)/i, "Typical flow: unlocked bootloader > custom recovery > ROM zip (+ GApps if not bundled) > format data > reboot. Tell me which ROM and which step you are stuck on."],
+ [/(hi|hello|hey)\b/i, "Hey! Ask me about Adarsh, ROM flashing, or anything else."]
+];
+const msgs=document.getElementById('msgs'),chat=document.getElementById('chat'),inp=document.getElementById('in');
+const hist=[];
+function add(t,c){const d=document.createElement('div');d.className='m '+c;d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
+function toggle(o){chat.classList.toggle('open',o);if(o&&!msgs.children.length)add("Hey! I'm Adarsh's AI assistant. Ask me about Adarsh, ROM flashing and unlocking, or anything else.",'bot');if(o)inp.focus()}
+document.addEventListener('click',e=>{const t=e.target.closest('#fab,#x,#open2');if(!t)return;toggle(t.id==='fab'?!chat.classList.contains('open'):t.id==='open2')});
+async function ask(q){
+  add(q,'me');hist.push({role:'user',content:q});
+  const w=add('...','bot');
+  try{
+    if(API_URL){
+      const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist.slice(-12)})});
+      const j=await r.json();if(!j.reply) throw 0;
+      w.textContent=j.reply;
+    }else{
+      const sm=window.claude?await claude.use('sample'):null;if(!sm) throw 0;
+      const convo=hist.slice(-12).map(m=>(m.role==='user'?'User: ':'Assistant: ')+m.content).join('\n');
+      const out=await sm(SYS+'\n\nConversation:\n'+convo+'\n\nReply to the last user message only.',{cache:false});
+      w.textContent=out.text;
+    }
+  }catch(e){
+    const hit=OFFLINE.find(o=>o[0].test(q));
+    w.textContent=hit?hit[1]:"I can only answer basic questions in offline mode. Ask about Adarsh or ROM flashing.";
+  }
+  hist.push({role:'assistant',content:w.textContent});
+}
+f.onsubmit=e=>{e.preventDefault();const q=inp.value.trim();if(!q)return;inp.value='';chips.remove();ask(q)};
+chips.onclick=e=>{if(e.target.tagName==='BUTTON'){const q=e.target.textContent;chips.remove();ask(q)}};
+document.addEventListener('click',e=>{
+  const t=e.target.closest('.tab');
+  if(t){document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b===t));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id===t.dataset.t));return}
+  const c=e.target.closest('.cp');
+  if(c){const txt=[...c.parentNode.querySelectorAll('div')].map(d=>d.textContent).join('\n');
+    const ok=()=>{c.textContent='Copied ✓'},no=()=>{c.textContent='Press & hold to copy'};
+    (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(ok,no);
+    setTimeout(()=>{c.textContent='Copy'},1800)}
+});
+// ---- motion ----
+(function(){
+  const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const bar=document.createElement('div');bar.id='bar';document.body.appendChild(bar);
+  addEventListener('scroll',()=>{bar.style.transform='scaleX('+(scrollY/((document.documentElement.scrollHeight-innerHeight)||1))+')'},{passive:true});
+  function count(c){const n=+c.dataset.n;if(rm){c.textContent=n;return}let s=null;(function f(t){s=s||t;const p=Math.min((t-s)/1400,1);c.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(performance.now())}
+  const els=document.querySelectorAll('nav,.eyebrow,h1,.txt p,.cta,.sph.s1,h2,.card,.stat,.pills a,footer');
+  els.forEach((el,i)=>{el.classList.add('rv');el.style.setProperty('--d',((i%4)*0.12)+'s')});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');const c=e.target.querySelector('[data-n]');if(c)count(c);io.unobserve(e.target)}}),{threshold:.12});
+  els.forEach(el=>io.observe(el));
+  return;
+  const g=document.createElement('div');g.className='glow';document.body.appendChild(g);
+  const L=[...document.querySelectorAll('.fl,.s2')];
+  let tx=innerWidth/2,ty=innerHeight/2,cx=0,cy=0,gx=tx,gy=ty;
+  addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY});
+  (function loop(){
+    const nx=tx/innerWidth-.5,ny=ty/innerHeight-.5;
+    cx+=(nx-cx)*.06;cy+=(ny-cy)*.06;gx+=(tx-gx)*.08;gy+=(ty-gy)*.08;
+    g.style.transform='translate3d('+gx+'px,'+gy+'px,0)';
+    L.forEach((el,i)=>{const k=(i%3+1)*24;el.style.translate=(-cx*k)+'px '+(-cy*k)+'px'});
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>
