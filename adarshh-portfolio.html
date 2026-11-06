@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Adarshh | Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark light;
+--bg:#07060a;--fg:#f3eee8;--mut:#a0979c;--card:rgba(255,255,255,.05);--line:rgba(255,255,255,.12);--ac:#ff3b3b}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f3f0;--fg:#17120f;--mut:#6b625b;--card:rgba(0,0,0,.04);--line:rgba(0,0,0,.14);--ac:#e5302f}}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;overflow-x:hidden;
+background-image:radial-gradient(50% 35% at 50% 0,color-mix(in srgb,var(--ac) 14%,transparent),transparent 70%)}
+a{color:inherit;text-decoration:none}
+#c{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
+#splash{position:fixed;inset:0;z-index:50;background:var(--bg);display:grid;place-items:center;transition:opacity .8s}
+#splash.off{opacity:0;pointer-events:none}
+#splash .ic{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;font-size:18px;color:var(--ac)}
+#splash p{position:absolute;bottom:18%;color:var(--mut);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;margin:0}
+nav{position:fixed;z-index:40;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);display:flex;gap:2px;padding:5px;border-radius:999px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);max-width:calc(100% - 20px);overflow-x:auto}
+nav a{padding:7px 13px;border-radius:999px;font-size:.8rem;color:var(--mut);white-space:nowrap}
+nav a:first-child{background:var(--ac);color:#fff}
+section{max-width:1000px;margin:0 auto;padding:84px 20px 20px}
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:90px}
+.out{font-family:Anton,Impact,sans-serif;font-size:clamp(3.4rem,17vw,10rem);line-height:.9;color:transparent;-webkit-text-stroke:2px var(--ac);letter-spacing:.01em}
+h1{font-size:clamp(1.3rem,5vw,2.2rem);margin:14px 0 6px;font-weight:700}
+.nm{display:inline-block;background:var(--ac);color:#fff;font-family:Anton,Impact,sans-serif;padding:0 12px;letter-spacing:.03em;position:relative}
+.tag{display:inline-block;margin:10px 0;font-size:.72rem;letter-spacing:.14em;color:var(--ac);border:1px solid var(--ac);padding:5px 10px;position:relative}
+.lead{max-width:56ch;color:var(--mut);position:relative}
+.sel{outline:1px solid #3b82f6;outline-offset:6px}
+.sel::after{content:attr(data-l);position:absolute;left:-1px;top:-30px;background:#3b82f6;color:#fff;font:600 10px "Space Grotesk",sans-serif;padding:2px 7px;border-radius:3px;white-space:nowrap}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.btn{padding:11px 18px;border-radius:8px;border:1px solid var(--line);font-size:.85rem;font-weight:500;background:var(--card);cursor:pointer;color:var(--fg);font-family:inherit}
+.btn.p{background:var(--ac);border-color:var(--ac);color:#fff}
+.stats{display:flex;gap:26px;flex-wrap:wrap;margin-top:8px}
+.stats b{font-family:Anton,Impact,sans-serif;font-size:1.9rem;color:var(--ac);font-weight:400;display:block;line-height:1}
+.stats span{font-size:.72rem;color:var(--mut);text-transform:uppercase;letter-spacing:.1em}
+.k{font-size:.72rem;letter-spacing:.2em;color:var(--ac);text-transform:uppercase}
+h2{font-size:clamp(1.8rem,6vw,2.8rem);margin:.2em 0 .5em;letter-spacing:-.02em}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{padding:18px;border-radius:14px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.card h3{margin:.3em 0;font-size:1.05rem}.card p{margin:0;color:var(--mut);font-size:.9rem}
+.chip{display:inline-block;margin:4px 6px 0 0;padding:5px 11px;border-radius:999px;border:1px solid var(--line);font-size:.8rem;background:var(--card)}
+.red{color:var(--ac);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+details{border:1px solid var(--line);border-radius:12px;background:var(--card);margin-bottom:10px;padding:2px 16px}
+summary{cursor:pointer;padding:13px 0;font-weight:700}
+details p{color:var(--mut);font-size:.88rem;margin:4px 0 8px}
+pre{position:relative;background:rgba(0,0,0,.4);color:#f3eee8;padding:14px;border-radius:10px;overflow-x:auto;font-size:.8rem;margin:8px 0 14px}
+pre button{position:absolute;right:8px;top:8px;font:inherit;font-size:.7rem;padding:3px 9px;border-radius:6px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;cursor:pointer}
+.warn{border-left:3px solid var(--ac);padding:6px 12px;font-size:.82rem;color:var(--mut)}
+#contact{text-align:center;padding-bottom:140px}
+#orb{width:min(88vw,360px);margin:20px auto 0;padding:40px 0}
+#orb h2{margin:.2em 0}
+#orb p{color:var(--mut);margin:0 0 14px}
+.links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+footer{text-align:center;color:var(--mut);font-size:.75rem;padding:0 0 30px}
+.rv{opacity:0;transform:translateY(18px);transition:.7s}.rv.in{opacity:1;transform:none}
+#fab{position:fixed;z-index:45;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);width:54px;height:54px;border-radius:50%;border:0;background:var(--ac);color:#fff;font-size:22px;cursor:pointer;box-shadow:0 8px 24px rgba(255,59,59,.4)}
+#chat{position:fixed;z-index:46;right:12px;left:12px;max-width:380px;margin-left:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 80px);height:min(60vh,460px);display:none;flex-direction:column;border-radius:16px;background:var(--bg);border:1px solid var(--line);overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+#chat.open{display:flex}
+#chat header{padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;display:flex;justify-content:space-between}
+#msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:85%;padding:8px 12px;border-radius:12px;font-size:.86rem;white-space:pre-wrap}
+.m.b{background:var(--card);border:1px solid var(--line);align-self:flex-start}
+.m.u{background:var(--ac);color:#fff;align-self:flex-end}
+#cf{display:flex;gap:6px;padding:10px;border-top:1px solid var(--line)}
+#cf input{flex:1;min-width:0;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-size:16px}
+</style>
+</head>
+<body>
+<div id="splash"><div class="ic">◆</div><p>Loading portfolio</p></div>
+<canvas id="c"></canvas>
+<nav><a href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#guide">Flash Guide</a><a href="#contact">Contact</a></nav>
+<main>
+<section id="home" class="hero">
+  <div class="out">PORTFOLIO</div>
+  <h1>Hello, I’m <span class="nm" data-l="Adarshh · Heading">ADARSHH.</span></h1>
+  <div><span class="tag" data-l="Role · Text">STUDENT · TECH ENTHUSIAST · WEB DEVELOPER (AI)</span></div>
+  <p class="lead" data-l="Intro · Paragraph">I build websites, chat tools and AI-powered automations, and I flash, break and fix Android phones in my free time. B.Tech and BA LLB (Hons), both first year.</p>
+  <div class="btns"><a class="btn p" href="#projects">Explore Projects</a></div>
+  <div class="stats"><div><b>2</b><span>Degrees</span></div><div><b>3</b><span>Projects</span></div><div><b>6</b><span>Devices</span></div></div>
+</section>
+
+<section id="about" class="rv">
+  <div class="k">About</div><h2>Background &amp; Philosophy</h2>
+  <div class="grid">
+    <div class="card"><h3>Who I am</h3><p>First-year student of B.Tech and BA LLB (Hons) at the same time. I learn by building, and I have made multiple websites already.</p></div>
+    <div class="card"><h3>Interests</h3><span class="chip">AI automation</span><span class="chip">UI/UX design</span><span class="chip">Game development</span><span class="chip">AI/ML training</span><span class="chip">Money &amp; asset management</span></div>
+    <div class="card"><h3>Skills</h3><span class="chip">HTML / CSS / JS</span><span class="chip">Python</span><span class="chip">Cloudflare Workers</span><span class="chip">Gemini API</span><span class="chip">Website hosting</span></div>
+  </div>
+</section>
+
+<section id="expertise" class="rv">
+  <div class="k">Expertise</div><h2>What I Bring</h2>
+  <div class="grid">
+    <div class="card"><h3>AI &amp; Automation</h3><p>Building workflows that automate repetitive tasks and improve efficiency. Experienced in working with AI tools and APIs to create practical, real-world solutions.</p></div>
+    <div class="card"><h3>Technology</h3><p>Strong interest in software, emerging technologies, and problem-solving. Quick to learn new tools and adapt to evolving tech stacks.</p></div>
+    <div class="card"><h3>Finance</h3><p>Solid understanding of financial concepts, including accounting basics, budgeting, and financial analysis. Able to combine finance knowledge with technology to build smarter, data-driven solutions.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Core Strengths</h3>
+    <ul style="margin:8px 0 0;padding-left:18px;color:var(--mut);font-size:.92rem"><li>Analytical thinking and problem-solving</li><li>Self-driven learning and adaptability</li><li>Bridging technology and finance through automation</li></ul></div>
+</section>
+
+<section id="flagship" class="rv">
+  <div class="k">Flagship</div><h2>Flagship Deployments</h2>
+  <div class="card"><span class="red">Upcoming · In planning</span><h3>SAAI: 7-Layer Automated System</h3>
+  <p>A planned automation system built in seven layers. It is still in the design stage, so each layer will be added here as it is finalised.</p>
+  <div style="margin-top:10px"><span class="chip">L1 · TBA</span><span class="chip">L2 · TBA</span><span class="chip">L3 · TBA</span><span class="chip">L4 · TBA</span><span class="chip">L5 · TBA</span><span class="chip">L6 · TBA</span><span class="chip">L7 · TBA</span></div></div>
+</section>
+
+<section id="projects" class="rv">
+  <div class="k">Work</div><h2>Projects</h2>
+  <div class="grid">
+    <a class="card" href="https://wild-haze-b38c.whyadarsh7.workers.dev/" target="_blank" rel="noopener"><span class="red">AI · Chat</span><h3>DevChat</h3><p>A ChatGPT-style chat website with a clean UI, running on Cloudflare Workers.</p></a>
+    <a class="card" href="https://both18007-eng.github.io/whyad7rsh-github.io/devadarsh0001.html" target="_blank" rel="noopener"><span class="red">Android · Content</span><h3>ROM Tester Site</h3><p>Custom ROM reviews, unlock guides, device list and a built-in AI assistant.</p></a>
+    <a class="card" href="https://both18007-eng.github.io/whyad7rsh-github.io/flappy.html" target="_blank" rel="noopener"><span class="red">Game</span><h3>Flappy</h3><p>A Flappy-style browser game, playable on phone and desktop.</p></a>
+  </div>
+</section>
+
+<section id="guide" class="rv">
+  <div class="k">Android</div><h2>K20 Pro Flash Guide</h2>
+  <p style="color:var(--mut)">Redmi K20 Pro (raphael). Tap Copy on any command.</p>
+  <div class="warn">Unlocking wipes all data and can affect warranty. Back up everything first.</div><br>
+  <details><summary>1. Unlock bootloader</summary>
+    <p>Add a Mi account in Developer options, turn on OEM unlocking and USB debugging, apply for permission, then unlock with Mi Unlock Tool (hold Volume Down + Power for fastboot).</p>
+    <pre><button>Copy</button>adb reboot bootloader
+fastboot devices
+fastboot flashing unlock</pre></details>
+  <details><summary>2. Flash a custom ROM</summary>
+    <p>Boot a recovery (TWRP or OrangeFox), push the ROM zip, wipe if you are switching ROM families, flash the ROM and then GApps if needed, and reboot. First boot can take several minutes.</p>
+    <pre><button>Copy</button>fastboot boot recovery.img
+adb push rom.zip /sdcard/
+adb sideload rom.zip
+fastboot reboot</pre></details>
+  <details><summary>3. Relock bootloader</summary>
+    <p>Flash the latest official stock fastboot ROM first, then relock.</p>
+    <pre><button>Copy</button>adb reboot bootloader
+fastboot oem lock</pre>
+    <div class="warn">Never relock with a custom ROM or recovery installed. It is the most common cause of a hard brick.</div><br></details>
+  <details><summary>4. Back to stock ROM</summary>
+    <p>Download the official fastboot ROM for raphael, extract it, open Mi Flash Tool, choose the folder, then pick “clean all” or “save user data” and flash.</p>
+    <pre><button>Copy</button>adb reboot bootloader
+fastboot getvar all
+fastboot reboot</pre></details>
+</section>
+
+<section id="contact" class="rv">
+  <div class="k">Contact</div>
+  <div id="orb"><h2>Let’s Build Something Extraordinary.</h2><p>Open for web, AI and automation ideas.</p>
+  <div class="links"><a class="btn p" href="mailto:whyadarsh7@gmail.com">whyadarsh7@gmail.com</a><a class="btn" href="https://instagram.com/why.ad7rsh" target="_blank" rel="noopener">Instagram</a><a class="btn" href="https://github.com/both18007-eng" target="_blank" rel="noopener">GitHub</a></div></div>
+</section>
+<footer>© Adarshh</footer>
+</main>
+
+
+<script>
+(function(){
+var cv=document.getElementById('c'),ctx=cv.getContext('2d'),W=0,H=0;
+function rs(){var d=Math.min(window.devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);}
+addEventListener('resize',rs);rs();
+var cols=['#ff4d4d','#ffb020','#4dd2ff','#7c6bff','#3ddc97','#ff6bd6','#ffd84d','#ff8a4d','#5ee0c8','#a78bfa','#f472b6','#60a5fa'];
+var nms=['Aarav','Sahir','Cutu','Dev','Riya','Kabir','Zoya','Neel','Mira','Ishan','Tara','Vik'];
+var N=12,cs=[],mode='orbit',splash=true,inC=false,ptr=null,oc={x:W/2,y:H/2},oR=90;
+for(var i=0;i<N;i++)cs.push({i:i,x:W/2,y:H/2,rot:0,a:1,c:cols[i],n:nms[i],lb:i%4===0,sd:Math.random()*100,s1:.6+Math.random()*.8,s2:.6+Math.random()*.8,dr:i%2?1:-1});
+function arrow(u){
+ ctx.save();ctx.globalAlpha=u.a;ctx.translate(u.x,u.y);ctx.rotate(u.rot);
+ ctx.shadowColor=u.c;ctx.shadowBlur=10;ctx.beginPath();
+ ctx.moveTo(0,0);ctx.lineTo(0,17);ctx.lineTo(4.6,13);ctx.lineTo(8,20.5);ctx.lineTo(10.8,19.3);ctx.lineTo(7.5,12);ctx.lineTo(13,12);ctx.closePath();
+ ctx.fillStyle=u.c;ctx.fill();ctx.shadowBlur=0;ctx.lineWidth=1.2;ctx.strokeStyle='rgba(255,255,255,.9)';ctx.lineJoin='round';ctx.stroke();
+  ctx.restore();
+}
+function al(a,b,f){var d=((b-a+Math.PI)%(Math.PI*2)+Math.PI*2)%(Math.PI*2)-Math.PI;return a+d*f;}
+var SEL='h1,h2,.nm,.tag,.lead,.card,.chip,.btn,nav a,summary,.stats b,.out,.warn',els=[],lq=-9;
+function vis(e){var r=e.getBoundingClientRect();return r.width>8&&r.height>6&&r.bottom>70&&r.top<H-30&&r.right>0&&r.left<W;}
+function lab(e){var n=e.tagName,c=e.className+'';if(/^H[12]$/.test(n)||c.indexOf('out')>-1||c.indexOf('nm')>-1)return 'Heading';if(c.indexOf('chip')>-1||c.indexOf('tag')>-1)return 'Tag';if(c.indexOf('btn')>-1||n==='A'||n==='SUMMARY')return 'Button';if(c.indexOf('card')>-1)return 'Card';return 'Text';}
+function pick(u,t){
+ if(t-lq>.7){lq=t;els=[].slice.call(document.querySelectorAll(SEL)).filter(vis);}
+ var c=els.filter(function(e){return e!==u.el&&!cs.some(function(o){return o.el===e;});});
+ if(!c.length)c=els;
+ if(!c.length)return;
+ u.el=c[Math.floor(Math.random()*c.length)];u.until=t+3+Math.random()*4;u.sel=t+1.5;u.lb=lab(u.el);u.fx=.25+Math.random()*.5;
+}
+function work(u,t){
+ if(!u.el||t>u.until||!vis(u.el))pick(u,t);
+ if(!u.el)return [W/2,H/2];
+ var r=u.el.getBoundingClientRect();
+ return [r.left+Math.min(r.width*u.fx,r.width-4)+Math.sin(t*1.3+u.sd)*3,r.top+r.height*.6+Math.cos(t*1.1+u.sd)*2];
+}
+function box(u,t){
+ if(!u.el||t>u.sel)return;
+ var r=u.el.getBoundingClientRect(),x=r.left-3,y=r.top-3,w=r.width+6,h=r.height+6;
+ ctx.save();ctx.globalAlpha=Math.min(1,(u.sel-t)*2)*u.a;ctx.strokeStyle='#3b82f6';ctx.lineWidth=1;ctx.strokeRect(x,y,w,h);
+ ctx.fillStyle='#fff';[[x,y],[x+w,y],[x,y+h],[x+w,y+h]].forEach(function(p){ctx.fillRect(p[0]-2.5,p[1]-2.5,5,5);ctx.strokeRect(p[0]-2.5,p[1]-2.5,5,5);});
+ ctx.font='600 10px sans-serif';var tw=ctx.measureText(u.lb).width+10;ctx.fillStyle='#3b82f6';ctx.fillRect(x,y-17,tw,15);ctx.fillStyle='#fff';ctx.textBaseline='middle';ctx.fillText(u.lb,x+5,y-9);
+ ctx.restore();
+}
+var orbEl=document.getElementById('orb'),last=performance.now();
+function frame(now){
+ var dt=Math.min((now-last)/1000,.05),t=now/1000;last=now;ctx.clearRect(0,0,W,H);
+ if(inC){var r=orbEl.getBoundingClientRect();oc={x:r.left+r.width/2,y:r.top+r.height/2};oR=Math.min(W*.42,210);}
+ else if(splash){oc={x:W/2,y:H/2};oR=90;}
+ for(var i=0;i<N;i++){
+  var u=cs[i],tx,ty,k=.035;
+  if(mode==='orbit'){var a=t*.6*u.dr+i*Math.PI*2/N,rr=oR+Math.sin(t*.8+u.sd)*10;tx=oc.x+Math.cos(a)*rr;ty=oc.y+Math.sin(a)*rr;}
+  else{var T=work(u,t);tx=T[0];ty=T[1];k=.06;}
+  var f=1-Math.pow(1-k,dt*60),dx=(tx-u.x)*f,dy=(ty-u.y)*f;u.x+=dx;u.y+=dy;
+  if(Math.sqrt(dx*dx+dy*dy)>.35)u.rot=al(u.rot,Math.atan2(dy,dx)+Math.PI*.75,.08);
+  u.a+=(((mode==='orbit'||i<8)?1:0)-u.a)*.05;
+  if(u.a>.02){if(mode!=='orbit')box(u,t);arrow(u);}
+ }
+ requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+addEventListener('pointermove',function(e){ptr={x:e.clientX,y:e.clientY};});
+addEventListener('pointerup',function(e){if(e.pointerType==='touch')setTimeout(function(){ptr=null;},1500);});
+var ac=null;
+function tick(){
+ try{
+  ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+  if(ac.state==='suspended')ac.resume();
+  var o=ac.createOscillator(),g=ac.createGain(),n=ac.currentTime;
+  o.type='sine';o.frequency.setValueAtTime(900,n);o.frequency.exponentialRampToValueAtTime(500,n+.04);
+  g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(.045,n+.005);g.gain.exponentialRampToValueAtTime(.0001,n+.06);
+  o.connect(g);g.connect(ac.destination);o.start(n);o.stop(n+.07);
+ }catch(e){}
+}
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('a,button,summary,.card,.chip'))tick();});
+function setMode(){mode=(inC||splash)?'orbit':'float';}
+new IntersectionObserver(function(e){inC=e[0].isIntersecting;setMode();},{threshold:.4}).observe(orbEl);
+setTimeout(function(){
+ splash=false;setMode();document.getElementById('splash').classList.add('off');
+ var s=document.querySelectorAll('.nm,.tag,.lead');s.forEach(function(el){el.classList.add('sel');});
+ setTimeout(function(){s.forEach(function(el){el.classList.remove('sel');});},2800);
+},2400);
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.1});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+document.querySelectorAll('pre button').forEach(function(b){b.addEventListener('click',function(){
+ var txt=b.parentNode.textContent.replace(/^Copy/,'').trim();
+ try{navigator.clipboard.writeText(txt);b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},1400);}catch(e){b.textContent='Select & copy';}
+});});
+
+})();
+</script>
+</body>
+</html>
